@@ -53,7 +53,7 @@ class Main:
                                  json=self.service_data)
 
         if response.status_code == 200:
-            print("Light toggled successfully")
+            pass
         else:
             print(f"Failed to toggle light. Status code: {response.status_code}")
             self.err_icon()
@@ -74,16 +74,13 @@ class Main:
 
     def toggle_icon(self):
         if self.light_state:
-            print("make on icon")
             self.light_state = False
             self.icon.icon = Image.open("icon_off.png")
         else:
-            print("make off icon")
             self.light_state = True
             self.icon.icon = Image.open("icon_on.png")
 
     def on_click(self):
-        print("Icon clicked!")
         self.toggle_icon()
         self.toggle_light()
 
