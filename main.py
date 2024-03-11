@@ -1,4 +1,6 @@
 import json
+import os
+
 import pystray
 import requests
 import sys
@@ -44,7 +46,11 @@ class Main:
         else:
             image = Image.open("icon_off.png")
 
-        menu = (item('Click', self.on_click, default=True, visible=False), item('Quit', self.quit_program))
+        menu = (
+            item('Click', self.on_click, default=True, visible=False),
+            item('Quit', self.quit_program),
+            item('Reload', self.reload_program)
+        )
 
         self.icon = pystray.Icon(name="LightToggle", icon=image, title="Toggle Lights", menu=menu)
 
@@ -85,8 +91,16 @@ class Main:
         self.toggle_light()
 
     def quit_program(self):
+        print("Quitting program")
         self.icon.stop()
         sys.exit()
+
+    def reload_program(self):
+        print("Reloading program")
+        self.icon.stop()
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
 
     def run(self):
         self.icon.run()
