@@ -102,7 +102,7 @@ class Main:
 
     def toggle_icon(self):
         colour = self.get_light_colour()
-        if colour == None:
+        if colour != None:
             self.icon.icon = Image.open("icon_off.png")
         else:
 
@@ -112,8 +112,8 @@ class Main:
                 self.icon.icon = Image.open("icon_on.png")
 
     def on_click(self):
-        self.toggle_light()
         self.toggle_icon()
+        self.toggle_light()
 
     def quit_program(self):
         print("Quitting program")
